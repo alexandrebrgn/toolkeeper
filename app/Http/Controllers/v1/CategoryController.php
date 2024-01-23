@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return response()->json($categories);
     }
 
     /**
@@ -30,7 +31,12 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $category = Category::create([
+            'name' => $request['name'],
+            'isLegal' => $request['isLegal'],
+        ]);
+
+        return response()->json($category, 201);
     }
 
     /**

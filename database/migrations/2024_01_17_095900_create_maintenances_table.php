@@ -16,7 +16,7 @@ return new class extends Migration
             $table->datetime('date');
             $table->text('report');
             $table->foreignId('user_id')->nullable()->constrained('users');
-            $table->foreignId('tool_id')->nullable()->constrained('tools');
+            $table->foreignId('tool_id')->constrained('tools');
             $table->timestamps();
         });
     }

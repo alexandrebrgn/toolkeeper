@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Datatool extends Model
@@ -21,13 +22,13 @@ class Datatool extends Model
         'updated_at'
     ];
 
-    public function tools() : HasMany
+    public function tools() : BelongsTo
     {
-        return $this->hasMany(Tool::class);
+        return $this->belongsTo(Tool::class);
     }
 
-    public function datacategories() : HasMany
+    public function datacategories() : BelongsTo
     {
-        return $this->hasMany(Datacategory::class);
+        return $this->belongsTo(Datacategory::class);
     }
 }

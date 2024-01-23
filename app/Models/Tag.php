@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Tag extends Model
@@ -20,8 +21,8 @@ class Tag extends Model
         'updated_at'
     ];
 
-    public function tools() : HasMany
+    public function tools() : BelongsTo
     {
-        return $this->hasMany(Tool::class);
+        return $this->belongsTo(Tool::class);
     }
 }

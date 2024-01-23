@@ -14,7 +14,8 @@ class DatatoolController extends Controller
      */
     public function index()
     {
-        //
+        $datatool = Datatool::all();
+        return response()->json($datatool);
     }
 
     /**
@@ -30,7 +31,7 @@ class DatatoolController extends Controller
      */
     public function store(StoreDataToolRequest $request)
     {
-        //
+
     }
 
     /**

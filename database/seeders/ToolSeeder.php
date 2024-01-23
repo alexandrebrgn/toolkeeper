@@ -22,5 +22,15 @@ class ToolSeeder extends Seeder
             'toDo' => false,
             'category_id' => 1,
         ]);
+
+        Tool::factory()->create([
+            'number' => "2",
+            'serialId' => "2024379413",
+            'isActive' => true,
+            'localisation' => "Bâtiment A",
+            'dateNextOperation' => fake()->date("2024-12-24 10:20:20"),
+            'toDo' => false,
+            'category_id' => 2,
+        ]);
     }
 }

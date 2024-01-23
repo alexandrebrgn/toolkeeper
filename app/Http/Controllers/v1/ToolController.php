@@ -34,11 +34,11 @@ class ToolController extends Controller
         $tool = Tool::create([
             'number' => $request['number'],
             'serialId' => $request['serialId'],
-            'isActive' => 0,
+            'isActive' => 1,
             'localisation' => $request['localisation'],
             'dateNextOperation' => $request['dateNextOperation'],
             'toDo' => 0,
-            'category_id' => 1
+            'category_id' => $request['category_id']
         ]);
 
         return response()->json($tool, 201);

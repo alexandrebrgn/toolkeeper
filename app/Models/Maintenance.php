@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Maintenance extends Model
@@ -22,13 +23,22 @@ class Maintenance extends Model
         'updated-at'
     ];
 
-    public function users() : HasMany
+//    public static function create($params)
+//    {
+//        $maintenance = parent::create($params);
+//        $maintenance->tool->update([
+//            'dateNextOperation' => $params->query('dateNextOperation')
+//        ]);
+//
+//    }
+
+    public function user() : BelongsTo
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function tools() : HasMany
+    public function tool() : BelongsTo
     {
-        return $this->hasMany(Tool::class);
+        return $this->belongsTo(Tool::class);
     }
 }

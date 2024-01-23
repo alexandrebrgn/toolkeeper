@@ -26,14 +26,20 @@ class Tool extends Model
         'updated_at'
     ];
 
-    public function datatools() : BelongsTo
+    public function getDateNextOperation() : string
     {
-        return $this->belongsTo(Datatool::class);
+        return $this->dateNextOperation;
     }
 
-    public function maintenances() : BelongsTo
+
+    public function datatools() : HasMany
     {
-        return $this->belongsTo(Maintenance::class);
+        return $this->hasMany(Datatool::class);
+    }
+
+    public function maintenances() : HasMany
+    {
+        return $this->hasMany(Maintenance::class);
     }
 
     public function tags() : BelongsTo
@@ -41,8 +47,8 @@ class Tool extends Model
         return $this->belongsTo(Tag::class);
     }
 
-    public function categories() : HasMany
+    public function category() : BelongsTo
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 }

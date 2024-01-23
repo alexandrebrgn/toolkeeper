@@ -21,13 +21,18 @@ class Category extends Model
         'updated_at'
     ];
 
-    public function tools() : BelongsTo
+    public function getName() : string
     {
-        return $this->belongsTo(Tool::class);
+        return $this->name;
     }
 
-    public function datacategories() : BelongsTo
+    public function tools() : HasMany
     {
-        return $this->belongsTo(Datacategory::class);
+        return $this->hasMany(Tool::class);
+    }
+
+    public function datacategory() : HasMany
+    {
+        return $this->hasMany(Datacategory::class);
     }
 }

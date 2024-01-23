@@ -33,37 +33,22 @@ class MaintenanceController extends Controller
      */
     public function store(StoreMaintenanceRequest $request)
     {
-        DB::beginTransaction();
+//        DB::beginTransaction();
+//        DB::commit();
+//        DB::transaction();
 
-        $tool = Tool::where('id', '=', $request->query('id_tool'));
+        $maintenance = Maintenance::create([
+            'date' => $request['date'],
+            'report' => $request['report'],
+            'user_id' => $request->query('id_user'),
+            'tool_id' => $request->query('id_tool'),0
+        ]);
 
-        //dd($tool);
-        //dd($request);
-        try {
-            $maintenance = Maintenance::create([
-                'date' => $request['date'],
-                'report' => $request['report'],
-                'user_id' => $request->query('id_user'),
-            ]);
+        $maintenance->tool->update([
+            'dateNextOperation' => $request['dateNextOperation']
+        ]);
 
-            $tool->update([
-                'dateNextOperation' => $request['dateNextOperation']
-            ]);
-
-
-            $tool = Tool::where('id', '=', $request->query('id_tool'));
-
-            $toolConfirm = Tool::where('id', '=', $request->query('12'))->where('dateNextOperation', '=', '12');
-//            if($toolConfirm) {
-//                dd($toolConfirm, $tool);
-//            }
-            DB::commit();
-
-            return response()->json($maintenance, 201);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json($maintenance, 400);
-        }
+        return response()->json($maintenance, 201);
     }
 
     /**

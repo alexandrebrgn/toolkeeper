@@ -38,7 +38,6 @@ class AuthController extends BaseController
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-//        $input['user_type_id'] = 2;
         Log::debug('inputs :', $input);
         $user = User::factory()->create($input);
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;

@@ -14,7 +14,8 @@ class DatacategoryController extends Controller
      */
     public function index()
     {
-        //
+        $datacategories = Datacategory::all();
+        return response()->json($datacategories);
     }
 
     /**

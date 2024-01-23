@@ -28,5 +28,9 @@ Route::prefix('v1')->group(function () {
         });
         Route::resource('tool', V1\ToolController::class);
         Route::resource('maintenance', V1\MaintenanceController::class);
+        Route::resource('category', V1\CategoryController::class);
+        Route::resource('tag', V1\TagController::class);
+        Route::resource('datatool', V1\DatatoolController::class);
+        Route::resource('datacategory', V1\DatacategoryController::class);
     });
 });
