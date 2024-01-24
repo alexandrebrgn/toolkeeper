@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Category;
-use App\Models\Maintenance;
+use App\Models\Operation;
 use App\Models\Tool;
 use App\Models\User;
 use http\QueryString;
@@ -28,11 +28,11 @@ class UnitTest extends TestCase
         return($response->original['success']['token']);
     }
 
-    public function test_get_maintenance(): void
+    public function test_get_operation(): void
     {
         $response = $this->withHeaders([
             "Authorization" => "Bearer ".$this->test_bearer_token()
-        ])->get('api/v1/maintenance');
+        ])->get('api/v1/operation');
 
         $response->assertStatus(200);
     }
@@ -68,13 +68,13 @@ class UnitTest extends TestCase
         $response->assertStatus(201);
     }
 
-    public function test_post_maintenance_and_tool_nextdateoperation_changement($id_tool = '1', $id_user = '1'): void
+    public function test_post_operation_and_tool_nextdateoperation_changement($id_tool = '1', $id_user = '1'): void
     {
         $dateNextOperation = '2030-06-20 10:00:00';
 
         $request = $this->withHeaders(
             ['Authorization' =>'Bearer '.$this->test_bearer_token()]
-        )->post('/api/v1/maintenance?id_tool='.$id_tool.'&id_user='.$id_user,
+        )->post('/api/v1/operation?id_tool='.$id_tool.'&id_user='.$id_user,
             [
                 'date' => '2023-10-03 21:13:26',
                 'report' => 'test_the_form_maintenance_finished()',
@@ -99,18 +99,18 @@ class UnitTest extends TestCase
         self::assertSame('Extincteurs', $toolCategoryName);
     }
 
-    public function test_relation_between_maintenance_and_tool(): void
+    public function test_relation_between_operation_and_tool(): void
     {
-        $maintenance = Maintenance::find('1');
-        $toolLocalisation = $maintenance->tool->localisation;
+        $operation = Operation::find('1');
+        $toolLocalisation = $operation->tool->localisation;
 
         self::assertSame('Bâtiment A', $toolLocalisation);
     }
 
     public function test_relation_between_maintenance_category_through_tool(): void
     {
-        $maintenance = Maintenance::find('1');
-        $categoryName = $maintenance->tool->category->name;
+        $operation = Operation::find('1');
+        $categoryName = $operation->tool->category->name;
 
         self::assertSame('Extincteurs', $categoryName);
     }

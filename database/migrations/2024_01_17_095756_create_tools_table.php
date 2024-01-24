@@ -31,7 +31,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('tools');
         Schema::dropIfExists('tags');
-        Schema::dropIfExists('maintenances');
+        Schema::dropIfExists('operations');
         Schema::dropIfExists('datatools');
     }
 };

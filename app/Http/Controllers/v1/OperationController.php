@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreMaintenanceRequest;
-use App\Http\Requests\UpdateMaintenanceRequest;
-use App\Models\Maintenance;
+use App\Http\Requests\StoreOperationRequest;
+use App\Http\Requests\UpdateOperationRequest;
+use App\Models\Operation;
 use App\Models\Tool;
 use Illuminate\Support\Facades\DB;
 
-class MaintenanceController extends Controller
+class OperationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $maintenances = Maintenance::all();
+        $maintenances = Operation::all();
         return response()->json($maintenances);
     }
 
@@ -31,13 +31,13 @@ class MaintenanceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMaintenanceRequest $request)
+    public function store(StoreOperationRequest $request)
     {
 //        DB::beginTransaction();
 //        DB::commit();
 //        DB::transaction();
 
-        $maintenance = Maintenance::create([
+        $maintenance = Operation::create([
             'date' => $request['date'],
             'report' => $request['report'],
             'user_id' => $request->query('id_user'),
@@ -54,7 +54,7 @@ class MaintenanceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Maintenance $maintenance)
+    public function show(Operation $maintenance)
     {
         //
     }
@@ -62,7 +62,7 @@ class MaintenanceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Maintenance $maintenance)
+    public function edit(Operation $maintenance)
     {
         //
     }
@@ -70,7 +70,7 @@ class MaintenanceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMaintenanceRequest $request, Maintenance $maintenance)
+    public function update(UpdateOperationRequest $request, Operation $maintenance)
     {
         //
     }
@@ -78,7 +78,7 @@ class MaintenanceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Maintenance $maintenance)
+    public function destroy(Operation $maintenance)
     {
         //
     }

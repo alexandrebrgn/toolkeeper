@@ -27,7 +27,7 @@ Route::prefix('v1')->group(function () {
             return $request->user();
         });
         Route::resource('tool', V1\ToolController::class);
-        Route::resource('maintenance', V1\MaintenanceController::class);
+        Route::resource('operation', V1\OperationController::class);
         Route::resource('category', V1\CategoryController::class);
         Route::resource('tag', V1\TagController::class);
         Route::resource('datatool', V1\DatatoolController::class);

@@ -37,9 +37,9 @@ class Tool extends Model
         return $this->hasMany(Datatool::class);
     }
 
-    public function maintenances() : HasMany
+    public function operations() : HasMany
     {
-        return $this->hasMany(Maintenance::class);
+        return $this->hasMany(Operation::class);
     }
 
     public function tags() : BelongsTo

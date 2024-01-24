@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             DatacategorySeeder::class,
             ToolSeeder::class,
             TagSeeder::class,
-            MaintenanceSeeder::class,
+            OperationSeeder::class,
             DatatoolSeeder::class
         ]);
     }
