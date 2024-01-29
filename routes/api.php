@@ -26,7 +26,7 @@ Route::prefix('v1')->group(function () {
         Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             return $request->user();
         });
-        Route::resource('tool', V1\ToolController::class);
+        Route::get('/tool', [v1\ToolController::class, 'index']);
         Route::resource('operation', V1\OperationController::class);
         Route::resource('category', V1\CategoryController::class);
         Route::resource('tag', V1\TagController::class);

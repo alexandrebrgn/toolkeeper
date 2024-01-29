@@ -20,8 +20,6 @@ use Validator;
 class AuthController extends BaseController
 
 {
-
-
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -41,7 +39,9 @@ class AuthController extends BaseController
         Log::debug('inputs :', $input);
         $user = User::factory()->create($input);
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-        $success['name'] =  $user->name;
+        $success['firstName'] =  $user->firstName;
+        $success['lastName'] =  $user->lastName;
+        $success['email'] =  $user->email;
 
         return $this->sendResponse($success, 'User register successfully.');
     }
@@ -52,7 +52,9 @@ class AuthController extends BaseController
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-            $success['name'] =  $user->name;
+            $success['firstName'] =  $user->firstName;
+            $success['lastName'] =  $user->lastName;
+            $success['email'] =  $user->email;
 
             return $this->sendResponse($success, 'User login successfully.');
         }

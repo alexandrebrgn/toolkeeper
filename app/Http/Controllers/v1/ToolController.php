@@ -14,7 +14,7 @@ class ToolController extends Controller
      */
     public function index()
     {
-        $tools = Tool::all();
+        $tools = Tool::with('category')->get();
         return response()->json($tools);
     }
 
@@ -49,7 +49,10 @@ class ToolController extends Controller
      */
     public function show(Tool $tool)
     {
-        //
+        $tool_details = Tool::with([
+            'category'
+        ])->get()->find($tool->id);
+        return response()->json($tool_details);
     }
 
     /**

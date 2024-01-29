@@ -17,7 +17,7 @@ class ToolSeeder extends Seeder
            'number' => "73",
             'serialId' => "2024379413",
             'isActive' => true,
-            'localisation' => "Bâtiment A",
+            'localisation' => "Bâtiment B",
             'dateNextOperation' => fake()->date("2024-12-24 10:20:20"),
             'toDo' => false,
             'category_id' => 1,
@@ -31,6 +31,46 @@ class ToolSeeder extends Seeder
             'dateNextOperation' => fake()->date("2024-12-24 10:20:20"),
             'toDo' => false,
             'category_id' => 2,
+        ]);
+
+        Tool::factory()->create([
+            'number' => "31",
+            'serialId' => "798465214",
+            'isActive' => true,
+            'localisation' => "Bâtiment C",
+            'dateNextOperation' => fake()->date("2022-12-24 10:20:20"),
+            'toDo' => false,
+            'category_id' => 3,
+        ]);
+
+        Tool::factory()->create([
+            'number' => "115",
+            'serialId' => "1234567852",
+            'isActive' => true,
+            'localisation' => "Bâtiment F",
+            'dateNextOperation' => fake()->date("2024-12-24 10:20:20"),
+            'toDo' => false,
+            'category_id' => 3,
+        ]);
+
+        Tool::factory()->create([
+            'number' => "5",
+            'serialId' => "9845321595",
+            'isActive' => true,
+            'localisation' => "Bâtiment B",
+            'dateNextOperation' => fake()->date("2024-12-24 10:20:20"),
+            'toDo' => false,
+            'category_id' => 2,
+        ]);
+
+        Tool::factory()->create([
+            'number' => "98",
+            'serialId' => "87651245",
+            'isActive' => true,
+            'localisation' => "Bâtiment E",
+            'dateNextOperation' => fake()->date("2024-12-24 10:20:20"),
+            'toDo' => false,
+            'category_id' => 1,
         ]);
     }
 }

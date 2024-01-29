@@ -20,6 +20,9 @@ class BaseController extends Controller
         $response = [
 
             'success' => [
+                'firstName' => $result['firstName'],
+                'lastName' => $result['lastName'],
+                'email' => $result['email'],
                 'token' => $result['token'],
                 'message' => $message,
             ],
