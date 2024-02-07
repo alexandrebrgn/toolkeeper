@@ -13,15 +13,15 @@ class ToolPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasPermissionTo('read-tool', 'api');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Tool $tool): bool
+    public function view(User $user): bool
     {
-        //
+        return $user->hasPermissionTo('read-tool', 'api');
     }
 
     /**
@@ -29,23 +29,23 @@ class ToolPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasPermissionTo('create-tool', 'api');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Tool $tool): bool
+    public function update(User $user): bool
     {
-        //
+        return $user->hasPermissionTo('update-tool', 'api');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Tool $tool): bool
+    public function delete(User $user): bool
     {
-        //
+        return $user->hasPermissionTo('delete-tool', 'api');
     }
 
     /**

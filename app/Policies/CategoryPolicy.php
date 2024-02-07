@@ -37,7 +37,7 @@ class CategoryPolicy
      */
     public function update(User $user, Category $category): bool
     {
-        return $user ->hasPermissionTo('read-update', 'api');
+        return $user ->hasPermissionTo('update-category', 'api');
     }
 
     /**
@@ -45,7 +45,7 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category): bool
     {
-        return $user ->hasPermissionTo('read-delete', 'api');
+        return $user ->hasPermissionTo('delete-category', 'api');
     }
 
     /**

@@ -13,7 +13,7 @@ class OperationPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasPermissionTo('read-operation', 'api');
     }
 
     /**
@@ -21,7 +21,7 @@ class OperationPolicy
      */
     public function view(User $user, Operation $maintenance): bool
     {
-        //
+        return $user->hasPermissionTo('read-operation', 'api');
     }
 
     /**
@@ -29,7 +29,7 @@ class OperationPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasPermissionTo('create-operation', 'api');
     }
 
     /**
@@ -37,7 +37,7 @@ class OperationPolicy
      */
     public function update(User $user, Operation $maintenance): bool
     {
-        //
+        return $user->hasPermissionTo('update-operation', 'api');
     }
 
     /**
@@ -45,7 +45,7 @@ class OperationPolicy
      */
     public function delete(User $user, Operation $maintenance): bool
     {
-        //
+        return $user->hasPermissionTo('delete-operation', 'api');
     }
 
     /**
