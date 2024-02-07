@@ -16,8 +16,22 @@ class OperationController extends Controller
      */
     public function index()
     {
-        $maintenances = Operation::all();
-        return response()->json($maintenances);
+        if(auth()->user()->can('viewAny', Operation::class)) {
+            $operations = Operation::with(
+                'tool',
+            )
+                ->orderByDesc('toDoDate')
+                ->get();
+            return response()->json($operations);
+        } else {
+            return abort(405);
+        }
+    }
+
+    public function getWithEmail($email)
+    {
+        $operations = Operation::get()->find($email);
+        return response()->json($operations);
     }
 
     /**
@@ -33,36 +47,43 @@ class OperationController extends Controller
      */
     public function store(StoreOperationRequest $request)
     {
-//        DB::beginTransaction();
-//        DB::commit();
-//        DB::transaction();
+        if(auth()->user()->can('create', Operation::class)) {
+            $operation = Operation::create([
+                'date' => $request['date'],
+                'report' => $request['report'],
+                'toDoDate' => $request['toDoDate'],
+                'user_id' => $request['operator_id'],
+                'tool_id' => $request['tool_id'],
+            ]);
 
-        $maintenance = Operation::create([
-            'date' => $request['date'],
-            'report' => $request['report'],
-            'user_id' => $request->query('id_user'),
-            'tool_id' => $request->query('id_tool'),0
-        ]);
-
-        $maintenance->tool->update([
-            'dateNextOperation' => $request['dateNextOperation']
-        ]);
-
-        return response()->json($maintenance, 201);
+            if($request['dateNextOperation'])
+                $operation->tool->update(['dateNextOperation' => $request['dateNextOperation']]);
+        } else {
+            return abort(405);
+        }
+        return response()->json($operation, 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Operation $maintenance)
+    public function show(Operation $operation)
     {
-        //
+        if(auth()->user()->can('viewAn', Operation::class)) {
+            $operation_details = Operation::with([
+                'tool',
+                'user'
+            ])->get()->find($operation->id);
+            return response()->json($operation_details);
+        } else {
+            return abort(405);
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Operation $maintenance)
+    public function edit(Operation $operation)
     {
         //
     }
@@ -70,7 +91,7 @@ class OperationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOperationRequest $request, Operation $maintenance)
+    public function update(UpdateOperationRequest $request, Operation $operation)
     {
         //
     }
@@ -78,7 +99,7 @@ class OperationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Operation $maintenance)
+    public function destroy(Operation $operation)
     {
         //
     }

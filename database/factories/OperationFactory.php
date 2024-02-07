@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Operation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class OperationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id'=> rand(1,2),
+            'date' => fake()->date("Y-m-d H-i-s"),
+            'toDoDate' => fake()->date("Y-m-d H-i-s"),
+            'report' => "Structure plastique",
+            'tool_id' => rand(1, 5),
         ];
     }
 }

@@ -13,11 +13,6 @@ class OperationSeeder extends Seeder
      */
     public function run(): void
     {
-        Operation::factory()->create([
-            'date' => fake()->date("2023-12-24-10-21-53"),
-            'report' => "Circuit défectueux réparé",
-            'user_id' => 1,
-            'tool_id' => 1
-        ]);
+        Operation::factory()->count(10)->create();
     }
 }

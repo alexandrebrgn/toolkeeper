@@ -12,6 +12,7 @@ class Tool extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'number',
         'serialId',
         'isActive',
@@ -30,7 +31,6 @@ class Tool extends Model
     {
         return $this->dateNextOperation;
     }
-
 
     public function datatools() : HasMany
     {

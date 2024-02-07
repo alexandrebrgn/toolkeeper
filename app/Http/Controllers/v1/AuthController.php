@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\v1;
 
 
+use App\Models\Operation;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\v1\BaseController as BaseController;
@@ -23,7 +24,6 @@ class AuthController extends BaseController
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-
             'firstName' => 'required',
             'lastName' => 'required',
             'email' => 'required|email',
@@ -61,5 +61,11 @@ class AuthController extends BaseController
         else{
             return $this->sendError('Unauthorised.', ['error'=>'unauthorised'], 401);
         }
+    }
+
+    public function operators()
+    {
+        $operators = User::get()->where('isOperator', '=', 1);
+        return response()->json($operators);
     }
 }

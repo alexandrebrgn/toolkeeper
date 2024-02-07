@@ -19,7 +19,7 @@ class UnitTest extends TestCase
     {
         $response = $this->post('api/v1/login',
             [
-                'email' => 'brgn.alex@test.fr',
+                'email' => 'manager.tk@test.fr',
                 'password' => '12345678'
             ]
         );

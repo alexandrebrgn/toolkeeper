@@ -14,8 +14,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return response()->json($categories);
+        if(auth()->user()->can('viewAny', Category::class)) {
+            $categories = Category::all();
+            return response()->json($categories);
+        } else {
+            return abort(405);
+        }
     }
 
     /**

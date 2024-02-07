@@ -13,7 +13,7 @@ class LoginTest extends TestCase
             [
                 'firstName' => 'Test',
                 'lastName' => 'Test',
-                'email' => 'brgn.alex@test.fr',
+                'email' => 'manager.tk@test.fr',
                 'password' => '12345678'
             ]
         );
@@ -25,7 +25,7 @@ class LoginTest extends TestCase
     {
         $response = $this->post('api/v1/login',
             [
-                'email' => 'brgn.alex@test.fr',
+                'email' => 'manager.tk@test.fr',
                 'password' => '12345678'
             ]
         );

@@ -19,7 +19,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Create roles
         $roleOperator = Role::create(['name' => 'toolkeeper-operator','guard_name' => 'api']);
-        $roleManager = Role::create(['name' => 'toolkeeper-purchaser','guard_name' => 'api']);
+        $roleManager = Role::create(['name' => 'toolkeeper-manager','guard_name' => 'api']);
         $roleAdmin = Role::create(['name' =>'toolkeeper-admin','guard_name' => 'api']);
 
         // Create permissions
@@ -42,10 +42,11 @@ class RolesAndPermissionsSeeder extends Seeder
         // Assign permissions to roles
         $roleOperator->givePermissionTo([
             // Tool
-            // Order
-            $permissionReadOperation,
+            $permissionReadTool, $permissionUpdateTool,
+            // Opération
+            $permissionUpdateOperation, $permissionReadOperation,
             // Category
-            $permissionReadCategory,
+            $permissionReadCategory
         ]);
 
         $roleManager->givePermissionTo([
@@ -64,11 +65,28 @@ class RolesAndPermissionsSeeder extends Seeder
             'password' => '12345678'
         ])->assignRole($roleManager);
 
-        $userOperator = User::factory()->create([
+        User::factory()->create([
             'firstName' => 'Alexandre Bourguignon',
             'lastName' => 'Test',
             'email' => 'operator.tk@test.fr',
+            'isOperator' => 1,
             'password' => '12345678'
+        ])->assignRole($roleOperator);
+
+        User::factory()->create([
+            'firstName' => 'Operateur Test',
+            'lastName' => 'Test',
+            'email' => 'operator.1@test.fr',
+            'isOperator' => 1,
+            'password' => '12345678'
+        ])->assignRole($roleOperator);
+
+        User::factory()->create([
+            'firstName' => 'qui',
+            'lastName' => 'molestias',
+            'email' => 'rubt88@example.net',
+            'isOperator' => 1,
+            'password' => 'consecteur'
         ])->assignRole($roleOperator);
     }
 }

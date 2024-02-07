@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\v1;
 
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller as Controller;
@@ -25,6 +26,7 @@ class BaseController extends Controller
                 'email' => $result['email'],
                 'token' => $result['token'],
                 'message' => $message,
+                'user' => User::get()->find($result['email'])
             ],
 
         ];

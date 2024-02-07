@@ -15,15 +15,18 @@ class CategorySeeder extends Seeder
     {
         Category::factory()->create([
             'name' => "Extincteurs",
-            'isLegal' => 1
+            'isLegal' => 1,
+            'icon' => 'fa-solid fa-fire-extinguisher'
         ]);
         Category::factory()->create([
             'name' => "Climatiseurs",
-            'isLegal' => 0
+            'isLegal' => 0,
+            'icon' => 'fa-solid fa-spray-can-sparkles'
         ]);
         Category::factory()->create([
             'name' => "Véhicules",
-            'isLegal' => 1
+            'isLegal' => 1,
+            'icon' => 'fa-solid fa-car'
         ]);
     }
 }

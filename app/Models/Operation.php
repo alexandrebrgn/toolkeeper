@@ -14,6 +14,7 @@ class Operation extends Model
     protected $fillable = [
         'date',
         'report',
+        'toDoDate',
         'user_id',
         'tool_id',
     ];
@@ -40,5 +41,10 @@ class Operation extends Model
     public function tool() : BelongsTo
     {
         return $this->belongsTo(Tool::class);
+    }
+
+    public function category() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany( Category::class, Tool::class);
     }
 }
