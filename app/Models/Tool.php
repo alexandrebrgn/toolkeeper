@@ -13,7 +13,7 @@ class Tool extends Model
 
     protected $fillable = [
         'id',
-        'number',
+        'name',
         'serialId',
         'isActive',
         'localisation',

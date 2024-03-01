@@ -48,7 +48,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $category_details = Category::get()->find($category->id);
+        return response()->json($category_details);
     }
 
     /**
@@ -64,7 +65,8 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->update($request->all());
+        return response()->json($category);
     }
 
     /**

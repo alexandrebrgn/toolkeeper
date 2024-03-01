@@ -14,7 +14,7 @@ class ToolSeeder extends Seeder
     public function run(): void
     {
         Tool::factory()->create([
-           'number' => "73",
+           'name' => "73",
             'serialId' => "2024379413",
             'isActive' => true,
             'localisation' => "Bâtiment B",
@@ -24,7 +24,7 @@ class ToolSeeder extends Seeder
         ]);
 
         Tool::factory()->create([
-            'number' => "2",
+            'name' => "2",
             'serialId' => "2024379413",
             'isActive' => true,
             'localisation' => "Bâtiment A",
@@ -34,7 +34,7 @@ class ToolSeeder extends Seeder
         ]);
 
         Tool::factory()->create([
-            'number' => "31",
+            'name' => "31",
             'serialId' => "798465214",
             'isActive' => true,
             'localisation' => "Bâtiment C",
@@ -44,7 +44,7 @@ class ToolSeeder extends Seeder
         ]);
 
         Tool::factory()->create([
-            'number' => "115",
+            'name' => "115",
             'serialId' => "1234567852",
             'isActive' => true,
             'localisation' => "Bâtiment F",
@@ -54,21 +54,21 @@ class ToolSeeder extends Seeder
         ]);
 
         Tool::factory()->create([
-            'number' => "5",
+            'name' => "5",
             'serialId' => "9845321595",
             'isActive' => true,
             'localisation' => "Bâtiment B",
-            'dateNextOperation' => fake()->date("2024-12-24 10:20:20"),
+            'dateNextOperation' => fake()->date("2024-05-24 10:20:20"),
             'toDo' => false,
             'category_id' => 2,
         ]);
 
         Tool::factory()->create([
-            'number' => "98",
+            'name' => "98",
             'serialId' => "87651245",
             'isActive' => true,
             'localisation' => "Bâtiment E",
-            'dateNextOperation' => fake()->date("2024-12-24 10:20:20"),
+            'dateNextOperation' => fake()->date("2024-06-24 10:20:20"),
             'toDo' => false,
             'category_id' => 1,
         ]);

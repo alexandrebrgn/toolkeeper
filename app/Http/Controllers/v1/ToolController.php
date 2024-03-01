@@ -38,7 +38,7 @@ class ToolController extends Controller
     {
         if(auth()->user()->can('create', Tool::class)) {
             $tool = Tool::create([
-                'number' => $request['number'],
+                'name' => $request['name'],
                 'serialId' => $request['serialId'],
                 'isActive' => 1,
                 'localisation' => $request['localisation'],
@@ -58,7 +58,19 @@ class ToolController extends Controller
     public function show(Tool $tool)
     {
         $tool_details = Tool::with([
-            'category'
+            'category',
+            'operations'
+        ])->get()->find($tool->id);
+        return response()->json($tool_details);
+    }
+
+    /**
+     * Display the specified resource by the seriaId
+     */
+    public function showBySerialId(Tool $tool) {
+        $tool_details = Tool::with([
+            'category',
+            'operations'
         ])->get()->find($tool->id);
         return response()->json($tool_details);
     }
@@ -78,6 +90,7 @@ class ToolController extends Controller
     {
         if(auth()->user()->can('update', Tool::class)) {
             $tool->update($request->all());
+//            $refreshedTool=
             return response()->json($tool);
         } else {
             return abort(405);

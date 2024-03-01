@@ -19,9 +19,19 @@ class OperationPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Operation $maintenance): bool
+    public function view(User $user): bool
     {
         return $user->hasPermissionTo('read-operation', 'api');
+    }
+
+    public function viewAsOperator(User $user): bool
+    {
+        return $user->hasPermissionTo('read-operation-as-operator', 'api');
+    }
+
+    public function viewAsManager(User $user): bool
+    {
+        return $user->hasPermissionTo('read-operation-as-manager', 'api');
     }
 
     /**
@@ -35,7 +45,7 @@ class OperationPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Operation $maintenance): bool
+    public function update(User $user): bool
     {
         return $user->hasPermissionTo('update-operation', 'api');
     }
@@ -43,7 +53,7 @@ class OperationPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Operation $maintenance): bool
+    public function delete(User $user): bool
     {
         return $user->hasPermissionTo('delete-operation', 'api');
     }
@@ -51,7 +61,7 @@ class OperationPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Operation $maintenance): bool
+    public function restore(User $user): bool
     {
         //
     }
@@ -59,7 +69,7 @@ class OperationPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Operation $maintenance): bool
+    public function forceDelete(User $user): bool
     {
         //
     }

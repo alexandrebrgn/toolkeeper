@@ -14,17 +14,17 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         Category::factory()->create([
-            'name' => "Extincteurs",
+            'name' => "Extincteur",
             'isLegal' => 1,
             'icon' => 'fa-solid fa-fire-extinguisher'
         ]);
         Category::factory()->create([
-            'name' => "Climatiseurs",
+            'name' => "Climatiseur",
             'isLegal' => 0,
             'icon' => 'fa-solid fa-spray-can-sparkles'
         ]);
         Category::factory()->create([
-            'name' => "Véhicules",
+            'name' => "Véhicule",
             'isLegal' => 1,
             'icon' => 'fa-solid fa-car'
         ]);

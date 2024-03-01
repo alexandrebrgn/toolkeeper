@@ -25,11 +25,14 @@ Route::prefix('v1')->group(function () {
             return $request->user();
         });
         // Tool
+        Route::get('tool/serialId/{tool:serialId}', [v1\ToolController::class, 'showBySerialId']);
         Route::apiResource('tool', v1\ToolController::class);
         // Operation
-        Route::resource('operation', V1\OperationController::class);
+        Route::apiResource('operation', V1\OperationController::class);
         // Category
         Route::resource('category', V1\CategoryController::class);
+        // User
+        Route::apiResource('user', V1\UserController::class);
 
         Route::resource('tag', V1\TagController::class);
         Route::resource('datatool', V1\DatatoolController::class);

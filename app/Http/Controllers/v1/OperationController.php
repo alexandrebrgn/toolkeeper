@@ -16,11 +16,17 @@ class OperationController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->can('viewAny', Operation::class)) {
+        if(auth()->user()->can('viewAsManager', Operation::class)) {
             $operations = Operation::with(
-                'tool',
-            )
-                ->orderByDesc('toDoDate')
+                'tool', 'user'
+            )->orderByDesc('date')
+            ->get();
+            return response()->json($operations);
+        } elseif (auth()->user()->can('viewAsOperator', Operation::class)) {
+            $operations = Operation::with(
+                'tool', 'user'
+            )->orderByDesc('toDoDate')
+                ->where('date')
                 ->get();
             return response()->json($operations);
         } else {
@@ -69,7 +75,7 @@ class OperationController extends Controller
      */
     public function show(Operation $operation)
     {
-        if(auth()->user()->can('viewAn', Operation::class)) {
+        if(auth()->user()->can('viewAny', Operation::class)) {
             $operation_details = Operation::with([
                 'tool',
                 'user'
@@ -93,7 +99,22 @@ class OperationController extends Controller
      */
     public function update(UpdateOperationRequest $request, Operation $operation)
     {
-        //
+        if(auth()->user()->can('update', Operation::class)) {
+            $request['date'] = now();
+            $operation->update($request->all());
+
+            $refreshOperation = Operation::with([
+                'tool',
+                'user'
+            ])->get()->find($operation->id);
+
+            if($request['dateNextOperation'])
+                $operation->tool->update(['dateNextOperation' => $request['dateNextOperation']]);
+
+            return response()->json($refreshOperation);
+        } else {
+            return abort(405);
+        }
     }
 
     /**

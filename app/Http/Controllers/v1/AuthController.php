@@ -43,7 +43,7 @@ class AuthController extends BaseController
         $success['lastName'] =  $user->lastName;
         $success['email'] =  $user->email;
 
-        return $this->sendResponse($success, 'User register successfully.');
+        return $this->sendResponse($success, 'UserController register successfully.');
     }
 
 
@@ -56,7 +56,7 @@ class AuthController extends BaseController
             $success['lastName'] =  $user->lastName;
             $success['email'] =  $user->email;
 
-            return $this->sendResponse($success, 'User login successfully.');
+            return $this->sendResponse($success, 'UserController login successfully.');
         }
         else{
             return $this->sendError('Unauthorised.', ['error'=>'unauthorised'], 401);

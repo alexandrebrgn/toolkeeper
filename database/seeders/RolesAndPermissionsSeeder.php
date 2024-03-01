@@ -26,11 +26,15 @@ class RolesAndPermissionsSeeder extends Seeder
             // On Tool model
         $permissionCreateTool = Permission::create(['name' => 'create-tool','guard_name' => 'api']);
         $permissionReadTool = Permission::create(['name' => 'read-tool','guard_name' => 'api']);
+        $permissionReadOperatorTool = Permission::create(['name' => 'read-tool-as-operator','guard_name' => 'api']);
+        $permissionReadManagerTool = Permission::create(['name' => 'read-tool-as-manager','guard_name' => 'api']);
         $permissionUpdateTool = Permission::create(['name' => 'update-tool','guard_name' => 'api']);
         $permissionDeleteTool = Permission::create(['name' => 'delete-tool','guard_name' => 'api']);
             // On Operation model
         $permissionCreateOperation = Permission::create(['name' => 'create-operation','guard_name' => 'api']);
         $permissionReadOperation = Permission::create(['name' => 'read-operation','guard_name' => 'api']);
+        $permissionReadOperatorOperation = Permission::create(['name' => 'read-operation-as-operator','guard_name' => 'api']);
+        $permissionReadManagerOperation = Permission::create(['name' => 'read-operation-as-manager','guard_name' => 'api']);
         $permissionUpdateOperation = Permission::create(['name' => 'update-operation','guard_name' => 'api']);
         $permissionDeleteOperation = Permission::create(['name' => 'delete-operation','guard_name' => 'api']);
             // On Category model
@@ -44,7 +48,7 @@ class RolesAndPermissionsSeeder extends Seeder
             // Tool
             $permissionReadTool, $permissionUpdateTool,
             // Opération
-            $permissionUpdateOperation, $permissionReadOperation,
+            $permissionUpdateOperation, $permissionReadOperatorOperation, $permissionReadOperation,
             // Category
             $permissionReadCategory
         ]);
@@ -53,37 +57,37 @@ class RolesAndPermissionsSeeder extends Seeder
             // Tool
             $permissionReadTool, $permissionCreateTool, $permissionUpdateTool, $permissionDeleteTool,
             // Operation
-            $permissionReadOperation, $permissionCreateOperation, $permissionUpdateOperation, $permissionDeleteOperation,
+            $permissionReadManagerOperation, $permissionCreateOperation, $permissionUpdateOperation, $permissionDeleteOperation, $permissionReadOperation,
             // Category
             $permissionReadCategory, $permissionCreateCategory, $permissionUpdateCategory, $permissionDeleteCategory,
         ]);
 
         User::factory()->create([
-            'firstName' => 'Alexandre',
-            'lastName' => 'Bourguignon',
-            'email' => 'manager.tk@test.fr',
+            'firstName' => 'Gad',
+            'lastName' => 'El Maleh',
+            'email' => 'gad.elmaleh@toolkeeper.fr',
             'password' => '12345678'
         ])->assignRole($roleManager);
 
         User::factory()->create([
-            'firstName' => 'Alexandre Bourguignon',
-            'lastName' => 'Test',
-            'email' => 'operator.tk@test.fr',
+            'firstName' => 'Alexandre',
+            'lastName' => 'Bourguignon ',
+            'email' => 'operator.tk@toolkeeper.fr',
             'isOperator' => 1,
             'password' => '12345678'
         ])->assignRole($roleOperator);
 
         User::factory()->create([
-            'firstName' => 'Operateur Test',
-            'lastName' => 'Test',
-            'email' => 'operator.1@test.fr',
+            'firstName' => 'Gérard',
+            'lastName' => 'Dubois',
+            'email' => 'operator.1@toolkeeper.fr',
             'isOperator' => 1,
             'password' => '12345678'
         ])->assignRole($roleOperator);
 
         User::factory()->create([
-            'firstName' => 'qui',
-            'lastName' => 'molestias',
+            'firstName' => 'Géraldinette',
+            'lastName' => 'Pied',
             'email' => 'rubt88@example.net',
             'isOperator' => 1,
             'password' => 'consecteur'

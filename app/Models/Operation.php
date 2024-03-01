@@ -21,7 +21,9 @@ class Operation extends Model
 
     protected $hidden = [
         'created_at',
-        'updated-at'
+        'updated-at',
+        'user_id',
+        'tool_id',
     ];
 
 //    public static function create($params)
@@ -40,11 +42,7 @@ class Operation extends Model
 
     public function tool() : BelongsTo
     {
-        return $this->belongsTo(Tool::class);
+        return $this->belongsTo(Tool::class)->with('category');
     }
 
-    public function category() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    {
-        return $this->belongsToMany( Category::class, Tool::class);
-    }
 }

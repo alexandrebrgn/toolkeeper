@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('tools', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
+            $table->string('name');
             $table->string('serialId');
             $table->boolean('isActive');
             $table->string('localisation')->nullable();
             $table->datetime('dateNextOperation')->nullable();
             $table->boolean('toDo')->nullable();
-            $table->foreignId('category_id')->nullable()->constrained('categories');
+            $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
         });
     }

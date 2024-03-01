@@ -18,10 +18,10 @@ class OperationFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'=> rand(1,2),
-            'date' => fake()->date("Y-m-d H-i-s"),
-            'toDoDate' => fake()->date("Y-m-d H-i-s"),
-            'report' => "Structure plastique",
+            'user_id'=> rand(2, 4),
+            'date' => fake()->dateTimeBetween('-2 years', now(), null),
+            'toDoDate' => fake()->dateTimeBetween('-2 years', now(), null),
+            'report' => fake()->name,
             'tool_id' => rand(1, 5),
         ];
     }
