@@ -7,9 +7,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Initialisation
+## Configuration 
 
-Change ip adress of API in config
+Configure the API by adapting the .env file to your environment.
 
 ## About Laravel
 
