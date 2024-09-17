@@ -28,7 +28,7 @@ class ToolController extends Controller
      */
     public function create()
     {
-        //
+        ////
     }
 
     /**
